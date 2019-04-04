@@ -16,7 +16,7 @@
                     <div><input id="bonusBet" type="text" value="10"/></div>
                 </div>
                 <div class="right">
-                    <div class="tabLabel"><label for="maxBet">Maximum Bet </label></div>
+                    <div class="tabLabel"><label for="maxBet">Maximum Stake </label></div>
                     <div><input id="maxBet" type="text" value="20"/></div>
                 </div>
                 <div class="clear"></div>
@@ -24,40 +24,40 @@
             <div class="section">
                 <div class="heading centered">Head-to-Head Odds</div>
 
-                <div class="left"><input id="oddsA1" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB1" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA1" type="text" value="1.59"></div>
+                <div class="right"><input id="oddsB1" type="text" value="2.31"></div>
 
-                <div class="left"><input id="oddsA2" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB2" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA2" type="text"></div>
+                <div class="right"><input id="oddsB2" type="text"></div>
 
-                <div class="left"><input id="oddsA3" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB3" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA3" type="text"></div>
+                <div class="right"><input id="oddsB3" type="text"></div>
 
-                <div class="left"><input id="oddsA4" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB4" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA4" type="text"></div>
+                <div class="right"><input id="oddsB4" type="text"></div>
 
-                <div class="left"><input id="oddsA5" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB5" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA5" type="text"></div>
+                <div class="right"><input id="oddsB5" type="text"></div>
 
-                <div class="left"><input id="oddsA6" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB6" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA6" type="text"></div>
+                <div class="right"><input id="oddsB6" type="text"></div>
 
-                <div class="left"><input id="oddsA7" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB7" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA7" type="text"></div>
+                <div class="right"><input id="oddsB7" type="text"></div>
 
-                <div class="left"><input id="oddsA8" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB8" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA8" type="text"></div>
+                <div class="right"><input id="oddsB8" type="text"></div>
 
-                <div class="left"><input id="oddsA9" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB9" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA9" type="text"></div>
+                <div class="right"><input id="oddsB9" type="text"></div>
 
-                <div class="left"><input id="oddsA10" type="text" value="1.59"/></div>
-                <div class="right"><input id="oddsB10" type="text" value="2.31"/></div>
+                <div class="left"><input id="oddsA10" type="text"></div>
+                <div class="right"><input id="oddsB10" type="text"></div>
                 
                 <div class="clear"></div>
             </div>
             <div>
-                <div class="go">
+                <div class="centered go">
                     <button id="calculate" class="btn" onclick="calculate();">Calculate</button>
                 </div>
             </div>
@@ -73,6 +73,7 @@
                     $<span id="gain"></span>.
                 </div>
             </div>
+            <div id="debug"></div>
         </div>
         <script>
             $(document).ready(function() {
@@ -80,10 +81,10 @@
             });
 
             function calculate(){
+                
                 var bet;
+                var headToHead;
                 var bonusBet = parseFloat($("#bonusBet").val());
-                var oddsA = parseFloat($("#oddsA").val());
-                var oddsB = parseFloat($("#oddsB").val());
                 var maxBet = parseFloat($("#maxBet").val());
 
                 var mins = {};
@@ -95,28 +96,39 @@
                 var option = 0;
                 var gain = 0;
 
-                for (bet = maxBet; bet > 0; bet--) {
-                    minAB = +Math.min((oddsA*bet)-bet, ((oddsB*bonusBet)-bonusBet)-bet).toFixed(2);
-                    minBA = +Math.min((oddsB*bet)-bet, ((oddsA*bonusBet)-bonusBet)-bet).toFixed(2);
+                for (headToHead = 1; headToHead <= 10; headToHead++) {
                     
-                    var currentMax = Math.max(minAB, minBA);
+                    var oddsA = parseFloat($("#oddsA" + headToHead).val());
+                    var oddsB = parseFloat($("#oddsB" + headToHead).val());
+                    
+                    //$("#debug").html($("#debug").html() + "x" + "<br />");
+                    
+                    if (oddsA > 0 && oddsB > 0 ) {
 
-                    if (currentMax > max) {
-                        
-                        $("#dollarsToBet").html(bet);
+                        for (bet = maxBet; bet > 0; bet--) {
+                            minAB = +Math.min((oddsA*bet)-bet, ((oddsB*bonusBet)-bonusBet)-bet).toFixed(2);
+                            minBA = +Math.min((oddsB*bet)-bet, ((oddsA*bonusBet)-bonusBet)-bet).toFixed(2);
+                            
+                            var currentMax = Math.max(minAB, minBA);
 
-                        if (minAB > minBA) {
-                            $("#betOption").html(oddsA);
-                            $("#bonusOption").html(oddsB);
-                            $("#gain").html(minAB);
-                        } else {
-                            $("#betOption").html(oddsB);
-                            $("#bonusOption").html(oddsA);
-                            $("#gain").html(minBA);
+                            if (currentMax > max) {
+                                
+                                $("#dollarsToBet").html(bet);
+
+                                if (minAB > minBA) {
+                                    $("#betOption").html(oddsA);
+                                    $("#bonusOption").html(oddsB);
+                                    $("#gain").html(minAB);
+                                } else {
+                                    $("#betOption").html(oddsB);
+                                    $("#bonusOption").html(oddsA);
+                                    $("#gain").html(minBA);
+                                }
+                            }
+
+                            max = Math.max(max, currentMax);
                         }
                     }
-
-                    max = Math.max(max, currentMax);
                 }
 
                 $("#result").show();
