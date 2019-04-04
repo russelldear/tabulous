@@ -10,16 +10,31 @@
             #result {
                 padding-top: 20px;
             }
+            .label {
+                display: inline-block;
+                width: 200px;
+            }
         </style>
     </head>
     <body>
 
-        <input id="bonusBet" type="text" value="10"/>
-        <input id="oddsA" type="text" value="1.59"/>
-        <input id="oddsB" type="text" value="2.31"/>
-        <input id="maxBet" type="text" value="20"/>
-
-        <button onclick="calculate();">Calculate</button>
+        <div>
+            <div class="label"><label for="bonusBet">Bonus bet value: </label></div>
+            <input id="bonusBet" type="text" value="10"/>
+        </div>
+        <div>
+            <div class="label"><label for="maxBet">Maximum bet: </label></div>
+            <input id="maxBet" type="text" value="20"/>
+        </div>
+        <div>
+            <div class="label"><label for="oddsA">Odds: </label></div>
+            <input id="oddsA" type="text" value="1.59"/> | 
+            <input id="oddsB" type="text" value="2.31"/>
+        </div>
+        <div>
+            <div class="label"><label for="calculate">&nbsp;</label></div>
+            <button id="calculate" onclick="calculate();">Calculate</button>
+        </div>
 
         <div id="result">
             <div>You should bet 
