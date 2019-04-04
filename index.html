@@ -25,8 +25,10 @@
             <div>You should bet 
                 <span id="dollarsToBet"></span> 
                 dollars on the 
-                $<span id="option"></span> 
-                option for a minimum gain of 
+                $<span id="betOption"></span> 
+                option, and put your bonus bet on the 
+                $<span id="bonusOption"></span> 
+                option, for a minimum gain of 
                 $<span id="gain"></span>.
             </div>
         </div>
@@ -64,10 +66,12 @@
                         $("#dollarsToBet").html(bet);
 
                         if (minAB > minBA) {
-                            $("#option").html(oddsA);
+                            $("#betOption").html(oddsA);
+                            $("#bonusOption").html(oddsB);
                             $("#gain").html(minAB);
                         } else {
-                            $("#option").html(oddsB);
+                            $("#betOption").html(oddsB);
+                            $("#bonusOption").html(oddsA);
                             $("#gain").html(minBA);
                         }
                     }
