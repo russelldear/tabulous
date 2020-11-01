@@ -15,8 +15,8 @@ function App() {
           <div className="heading centered">Head-to-Head Odds</div>
           <OddsCalculator />
         </div>
+        <OddsCalculatorResult />
       </div>
-      <OddsCalculatorResult />
     </div>
   );
 }

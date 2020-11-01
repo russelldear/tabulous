@@ -57,7 +57,7 @@ export const OddsCalculatorResult: React.FunctionComponent = () => {
 
   return (
     <div>
-      You should bet ${dollarsToBet} dollars on the ${betOption.toFixed(2)} option, and put your bonus bet on the ${bonusOption.toFixed(2)} option, for a minimum gain of {gain}.
+      You should bet ${dollarsToBet} dollars on the ${betOption.toFixed(2)} option, and put your bonus bet on the ${bonusOption.toFixed(2)} option, for a minimum gain of ${gain.toFixed(2)}.
     </div>
   );
 }

@@ -29,12 +29,14 @@ export const OddsCalculatorRow: React.FunctionComponent<IOdds> = (odds: IOdds) =
       <div className="left">
         <input
           autoFocus
+          className="rounded"
           onChange={changeHome}
           value={odds.home}
         />
       </div>
       <div className="right">
         <input
+          className="rounded"
           onChange={changeAway}
           onKeyDown={onCompletingRow}
           value={odds.away}

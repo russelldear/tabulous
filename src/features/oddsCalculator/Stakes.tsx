@@ -24,13 +24,13 @@ export const Stakes: React.FunctionComponent = () => {
         <div className="tabLabel">
           <label>Bonus Bet </label></div>
         <div>
-          <input onChange={changeBonusBet} value={oddsState.bonusBet} /></div>
+          <input className="rounded" onChange={changeBonusBet} value={oddsState.bonusBet} /></div>
       </div>
       <div className="right">
         <div className="tabLabel">
           <label>Maximum Stake </label></div>
         <div>
-          <input onChange={changeStake} value={oddsState.maxStake} /></div>
+          <input className="rounded" onChange={changeStake} value={oddsState.maxStake} /></div>
       </div>
       <div className="clear"></div>
     </div>
