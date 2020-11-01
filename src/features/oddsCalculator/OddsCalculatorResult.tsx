@@ -7,9 +7,6 @@ export const OddsCalculatorResult: React.FunctionComponent = () => {
   const oddsState = useSelector((state: RootState) => state.oddsState);
 
   let bet;
-  let bonusBet = 20;// parseFloat($("#bonusBet").val());
-  let maxBet = 20; //parseFloat($("#maxBet").val());
-
   let minAB;
   let minBA;
   let max = 0;
@@ -21,9 +18,11 @@ export const OddsCalculatorResult: React.FunctionComponent = () => {
   const calculate = () => {
     for (let i = 0; i < oddsState.allOdds.length; i++) {
       const odds = oddsState.allOdds[i];
+      const bonusBet = oddsState.bonusBet && oddsState.bonusBet !== "" ? parseFloat(oddsState.bonusBet) : 0;
+      const maxBet = oddsState.maxStake && oddsState.maxStake !== "" ? parseFloat(oddsState.maxStake) : 0;
       const home = parseFloat(odds.home);
       const away = parseFloat(odds.away);
-      
+      console.log(bonusBet + " " + maxBet);
       if (home > 0 && away > 0) {
 
         for (bet = maxBet; bet > 0; bet--) {

@@ -2,14 +2,14 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { IOdds } from './oddsCalculatorTypes'
 
 interface OddsCalculatorState {
-  bonusBet: number;
-  maxStake: number;
+  bonusBet: string;
+  maxStake: string;
   allOdds: IOdds[];
 }
 
 const initialState: OddsCalculatorState = {
-  bonusBet: 10,
-  maxStake: 200,
+  bonusBet: "10",
+  maxStake: "200",
   allOdds: [],
 };
 
@@ -24,10 +24,10 @@ export const oddsCalculatorSlice = createSlice({
       const index = state.allOdds.findIndex(o => o.id === action.payload.id);
       state.allOdds[index] = action.payload;
     },
-    updateBonusBet: (state, action: PayloadAction<number>) => {
+    updateBonusBet: (state, action: PayloadAction<string>) => {
       state.bonusBet = action.payload;
     },
-    updateStake: (state, action: PayloadAction<number>) => {
+    updateStake: (state, action: PayloadAction<string>) => {
       state.maxStake = action.payload;
     },
   },

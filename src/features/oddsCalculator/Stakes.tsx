@@ -9,13 +9,11 @@ export const Stakes: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
   const changeBonusBet = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const bonusBet = parseFloat(e.target.value);
-    dispatch(updateBonusBet(bonusBet));
+    dispatch(updateBonusBet(e.target.value));
   }
 
   const changeStake = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const maxStake = parseFloat(e.target.value);
-    dispatch(updateStake(maxStake));
+    dispatch(updateStake(e.target.value));
   }
 
   return (

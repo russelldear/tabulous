@@ -17,7 +17,7 @@ export const OddsCalculatorRow: React.FunctionComponent<IOdds> = (odds: IOdds) =
   }
 
   const onCompletingRow = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' || e.key === 'Tab') {
+    if ((e.key === 'Enter' || e.key === 'Tab') && !e.shiftKey) {
       dispatch(addOdds({ id: uuid(), home: "", away: "0.00"} as IOdds));
       e.preventDefault();
       e.stopPropagation();
